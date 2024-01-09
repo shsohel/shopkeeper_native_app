@@ -1,13 +1,16 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
+import { Link, Tabs, useNavigation } from "expo-router";
 import { Image, Pressable, View, useColorScheme } from "react-native";
 
 import Colors from "../../constants/Colors";
 import { icons } from "../../constants";
 import { tabStyle } from "../../assets/styles/tabStyle";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { DrawerActions } from "@react-navigation/native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const navigation = useNavigation();
 
   return (
     <Tabs
@@ -39,7 +42,7 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <View style={tabStyle.main(focused)}>
               <Image
-                style={{ height: 39, width: 39 }}
+                style={{ height: 35, width: 35 }}
                 source={focused ? icons.customerIconWhite : icons.customerIcon}
                 resizeMode="contain"
                 alt=""
@@ -70,28 +73,12 @@ export default function TabLayout() {
             <>
               <View style={tabStyle.main(focused)}>
                 <Image
-                  style={{ height: 39, width: 39 }}
-                  source={
-                    focused ? icons.customerIconWhite : icons.customerIcon
-                  }
+                  style={{ height: 35, width: 35 }}
+                  source={focused ? icons.cartIconWhite : icons.cartIcon}
                   resizeMode="contain"
                   alt=""
                 />
               </View>
-              {/* {focused && (
-                <View style={{ position: "absolute", zIndex: 0 }}>
-                  <Image
-                    style={{
-                      height: 80,
-                      width: 80,
-                      marginTop: -26,
-                    }}
-                    source={icons.halfCircle}
-                    resizeMode="contain"
-                    alt=""
-                  />
-                </View>
-              )} */}
             </>
           ),
         }}
@@ -104,7 +91,7 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <View style={tabStyle.main(focused)}>
               <Image
-                style={{ height: 39, width: 39 }}
+                style={{ height: 35, width: 35 }}
                 source={focused ? icons.homeIconWhite : icons.homeIcon}
                 resizeMode="contain"
                 alt=""
@@ -122,7 +109,9 @@ export default function TabLayout() {
             <View style={tabStyle.main(focused)}>
               <Image
                 style={{ height: 39, width: 39 }}
-                source={focused ? icons.customerIconWhite : icons.customerIcon}
+                source={
+                  focused ? icons.notificationIconWhite : icons.notificationIcon
+                }
                 resizeMode="contain"
                 alt=""
               />
@@ -135,14 +124,20 @@ export default function TabLayout() {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={tabStyle.main(focused)}>
-              <Image
-                style={{ height: 39, width: 39 }}
-                source={
-                  focused ? icons.profileSettingsWhite : icons.profileSettings
-                }
-                resizeMode="contain"
-                alt=""
-              />
+              <TouchableOpacity
+                onPress={() => {
+                  // navigation.dispatch(DrawerActions.openDrawer());
+                }}
+              >
+                <Image
+                  style={{ height: 39, width: 39 }}
+                  source={
+                    focused ? icons.profileSettingsWhite : icons.profileSettings
+                  }
+                  resizeMode="contain"
+                  alt=""
+                />
+              </TouchableOpacity>
             </View>
           ),
         }}

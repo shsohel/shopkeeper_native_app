@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import { COLORS, icons, images } from "../../../constants";
+import { COLORS, icons } from "../../../constants";
 import styles from "./drawer.style";
 import { usePathname, useRouter } from "expo-router";
 
@@ -42,7 +42,7 @@ const CustomDrawer = () => {
         <View style={styles.userSection}>
           <Image
             style={styles.userAvatar}
-            source={images.profile}
+            source={icons.customerIcon}
             resizeMode="contain"
           />
           <View style={styles.userInfo}>

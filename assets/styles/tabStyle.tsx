@@ -12,7 +12,7 @@ export const tabStyle = StyleSheet.create({
     borderRadius: 200,
     height: active ? 62 : 50,
     width: active ? 62 : 50,
-    padding: active ? 3 : 4,
+    padding: 0,
     marginTop: active ? -60 : 0,
     alignItems: "center",
     justifyContent: "center",
