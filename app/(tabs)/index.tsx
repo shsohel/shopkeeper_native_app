@@ -1,12 +1,20 @@
-import { StyleSheet } from 'react-native';
+/** @format */
 
-import EditScreenInfo from '../../components/EditScreenInfo';
-import { Text, View } from '../../components/Themed';
+import { Button, StyleSheet, View } from "react-native";
+
+import { useRouter } from "expo-router";
 
 export default function TabOneScreen() {
+  const router = useRouter();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <Button
+        onPress={() => {
+          router.push("/login");
+        }}
+        title="Got To"
+      />
+
       <View
         style={styles.separator}
         lightColor="#eee"
@@ -20,16 +28,16 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: "80%",
   },
 });

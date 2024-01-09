@@ -57,6 +57,9 @@ function RootLayoutNav() {
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack> */}
       <Drawer
+        screenOptions={{
+          headerShown: false,
+        }}
         drawerContent={(props) => {
           return <CustomDrawer {...props} />;
         }}

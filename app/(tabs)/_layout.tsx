@@ -1,5 +1,5 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs, useNavigation } from "expo-router";
+import { Link, Tabs, useNavigation, useRouter } from "expo-router";
 import { Image, Pressable, View, useColorScheme } from "react-native";
 
 import Colors from "../../constants/Colors";
@@ -7,14 +7,22 @@ import { icons } from "../../constants";
 import { tabStyle } from "../../assets/styles/tabStyle";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { DrawerActions } from "@react-navigation/native";
+import { useDrawerStatus } from "@react-navigation/drawer";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
+  const router = useRouter();
 
+  // const handleDrawerOpen = () => {
+  //   router.push("/");
+  //   navigation.dispatch(DrawerActions.openDrawer());
+  // };
+  const isDrawerOpen = useDrawerStatus() === "open";
   return (
     <Tabs
       screenOptions={{
+        // headerShown: false,
         // tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
 
         tabBarShowLabel: false,
@@ -124,20 +132,14 @@ export default function TabLayout() {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={tabStyle.main(focused)}>
-              <TouchableOpacity
-                onPress={() => {
-                  // navigation.dispatch(DrawerActions.openDrawer());
-                }}
-              >
-                <Image
-                  style={{ height: 39, width: 39 }}
-                  source={
-                    focused ? icons.profileSettingsWhite : icons.profileSettings
-                  }
-                  resizeMode="contain"
-                  alt=""
-                />
-              </TouchableOpacity>
+              <Image
+                style={{ height: 39, width: 39 }}
+                source={
+                  focused ? icons.profileSettingsWhite : icons.profileSettings
+                }
+                resizeMode="contain"
+                alt=""
+              />
             </View>
           ),
         }}
