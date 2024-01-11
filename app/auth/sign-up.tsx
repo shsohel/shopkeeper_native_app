@@ -10,11 +10,12 @@ import {
   View,
   Image,
 } from "react-native";
-import { COLORS, FONT, SIZES, icons } from "../constants";
+import { COLORS, FONT, SIZES, icons } from "../../constants";
 import { Link } from "expo-router";
 
-export default function Login() {
-  const [login, setLogin] = useState({
+export default function SignUp() {
+  const [signUp, setSignUp] = useState({
+    name: "",
     phoneNumber: "",
     password: "",
   });
@@ -28,16 +29,29 @@ export default function Login() {
           </View>
         </View>
         <View>
-          <Text style={styles.title}>লগিন তথ্য</Text>
+          <Text style={styles.title}>একাউন্ট তৈরি করুন</Text>
+        </View>
+        <View style={styles.textBox}>
+          <TextInput
+            style={styles.input}
+            value={signUp.name}
+            onChangeText={(text) => {
+              setSignUp({
+                ...signUp,
+                name: text,
+              });
+            }}
+            placeholder="নিজের নাম দিন"
+          />
         </View>
         <View style={styles.textBox}>
           <TextInput
             style={styles.input}
             inputMode="tel"
-            value={login.phoneNumber}
+            value={signUp.phoneNumber}
             onChangeText={(text) => {
-              setLogin({
-                ...login,
+              setSignUp({
+                ...signUp,
                 phoneNumber: text,
               });
             }}
@@ -49,26 +63,23 @@ export default function Login() {
             style={styles.input}
             inputMode="search"
             secureTextEntry={true}
-            value={login.password}
+            value={signUp.password}
             onChangeText={(text) => {
-              setLogin({
-                ...login,
+              setSignUp({
+                ...signUp,
                 password: text,
               });
             }}
-            placeholder="পাসওয়ার্ড"
+            placeholder="পাসওয়ার্ড "
           />
         </View>
         <View style={styles.button}>
-          <Link href="/forgot-password" style={styles.link}>
-            আপনি কি পাসওয়ার্ড ভুলে গেছেন ?
-          </Link>
-          <Button color={COLORS.primary} title="লগিন করুন" />
+          <Button color={COLORS.primary} title="সাবমিট করুন" />
         </View>
         <View style={styles.signUp}>
-          <Text style={styles.link}> একাউন্ট তৈরি করেন নি?</Text>
-          <Link style={styles.createAccountBtn} href="/sign-up">
-            একাউন্ট তৈরি করুন
+          <Text style={styles.link}>আপনার কি একাউন্ট আছে?</Text>
+          <Link style={styles.createAccountBtn} href="/auth/login">
+            লগিন
           </Link>
         </View>
       </View>

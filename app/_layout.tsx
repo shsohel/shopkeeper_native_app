@@ -51,19 +51,13 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      {/* <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack> */}
-      <Drawer
-        screenOptions={{
-          headerShown: false,
-        }}
-        drawerContent={(props) => {
-          return <CustomDrawer {...props} />;
-        }}
-      />
-    </ThemeProvider>
+    <Drawer
+      screenOptions={{
+        headerShown: false,
+      }}
+      drawerContent={(props) => {
+        return <CustomDrawer />;
+      }}
+    />
   );
 }

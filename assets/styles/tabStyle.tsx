@@ -2,6 +2,7 @@
 
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../constants";
+import { FC } from "react";
 
 export const tabStyle = StyleSheet.create({
   main: (active: boolean) => ({
@@ -16,6 +17,10 @@ export const tabStyle = StyleSheet.create({
     marginTop: active ? -60 : 0,
     alignItems: "center",
     justifyContent: "center",
+    transitionProperty: "width",
+    transitionDuration: 2,
+    transitionTimingFunction: "linear",
+    transitionDelay: 1,
     // position: "relative",
     // zIndex: 1,
   }),

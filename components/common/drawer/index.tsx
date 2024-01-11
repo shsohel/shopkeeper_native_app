@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { FC } from "react";
 import {
   View,
   Text,
@@ -29,6 +29,7 @@ const navItems = [
   },
 ];
 
+export type DrawerProps = {};
 const CustomDrawer = () => {
   const router = useRouter();
   const pathname = usePathname();

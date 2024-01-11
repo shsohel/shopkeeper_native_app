@@ -1,27 +1,25 @@
 /** @format */
 
-import { Button, StyleSheet, View } from "react-native";
+import { Button, Platform, SafeAreaView, StyleSheet, View } from "react-native";
 
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { COLORS } from "../../constants";
 
 export default function TabOneScreen() {
   const router = useRouter();
   return (
-    <View style={styles.container}>
-      <Button
-        onPress={() => {
-          router.push("/login");
-        }}
-        title="Got To"
-      />
-
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      {/* <EditScreenInfo path="app/(tabs)/index.tsx" /> */}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Button
+          color={COLORS.primary}
+          onPress={() => {
+            router.push("/auth/login");
+          }}
+          title="Got To"
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
