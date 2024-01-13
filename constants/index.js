@@ -2,6 +2,7 @@
 
 import icons from "./icons";
 import COLORS from "./Colors";
+import IMAGES from "./images";
 
 const FONT = {
   regular: "DMRegular",
@@ -42,4 +43,4 @@ const SHADOWS = {
   },
 };
 
-export { icons, COLORS, FONT, SIZES, SHADOWS };
+export { icons, COLORS, FONT, SIZES, SHADOWS, IMAGES };
