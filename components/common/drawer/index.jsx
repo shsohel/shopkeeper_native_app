@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { FC } from "react";
+import React from 'react';
 import {
   View,
   Text,
@@ -9,32 +9,31 @@ import {
   ScrollView,
   TouchableOpacity,
   Linking,
-} from "react-native";
-import { COLORS, icons } from "../../../constants";
-import styles from "./drawer.style";
-import { usePathname, useRouter } from "expo-router";
+} from 'react-native';
+import { COLORS, icons } from '../../../constants';
+import styles from './drawer.style';
+import { usePathname, useRouter } from 'expo-router';
 
 const navItems = [
   {
     id: 1,
-    label: "Home",
-    link: "/",
+    label: 'Home',
+    link: '/',
     icon: null,
   },
   {
     id: 2,
-    label: "All Jobs",
-    link: "/jobs",
+    label: 'All Jobs',
+    link: '/jobs',
     icon: null,
   },
 ];
 
-export type DrawerProps = {};
 const CustomDrawer = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleRouter = (link: string) => {
+  const handleRouter = (link) => {
     router.push(link);
   };
   return (
@@ -73,10 +72,10 @@ const CustomDrawer = () => {
       <View>
         <TouchableOpacity
           style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
             backgroundColor: COLORS.lightWhite,
             borderTopWidth: 0.5,
             borderColor: COLORS.gray,
@@ -84,7 +83,7 @@ const CustomDrawer = () => {
             columnGap: 5,
           }}
           onPress={() => {
-            Linking.openURL("https://prosohel.com");
+            Linking.openURL('https://prosohel.com');
           }}
         >
           {/* <Image

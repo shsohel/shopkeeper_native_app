@@ -1,11 +1,11 @@
 /** @format */
 
-import { Text, View } from "react-native";
+import { SafeAreaView, Text, View } from 'react-native';
 
 export default function FourTab() {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Hello</Text>
-    </View>
+    </SafeAreaView>
   );
 }

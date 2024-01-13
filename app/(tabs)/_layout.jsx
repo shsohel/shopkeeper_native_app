@@ -1,78 +1,46 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs, useNavigation, useRouter } from "expo-router";
-import { Image, Pressable, View, useColorScheme } from "react-native";
+import { Link, Stack, Tabs, useNavigation, useRouter } from 'expo-router';
+import {
+  Button,
+  Image,
+  Pressable,
+  Text,
+  View,
+  useColorScheme,
+} from 'react-native';
 
-import Colors from "../../constants/Colors";
-import { COLORS, icons } from "../../constants";
-import { tabStyle } from "../../assets/styles/tabStyle";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import Colors from '../../constants/Colors';
+import { COLORS, icons } from '../../constants';
+import { tabStyle } from '../../assets/styles/tabStyle';
+import { DrawerActions } from '@react-navigation/native';
 
-import Animated, { useAnimatedProps } from "react-native-reanimated";
-import { StatusBar } from "expo-status-bar";
-export type StyleProps = {
-  active: boolean;
-};
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-  const navigation = useNavigation();
   const router = useRouter();
-
-  // const handleDrawerOpen = () => {
-  //   router.push("/");
-  //   navigation.dispatch(DrawerActions.openDrawer());
-  // };
-
-  const animatedProps = useAnimatedProps(() => {
-    return {
-      opacity: 5,
-    };
-  });
   return (
     <Tabs
       screenOptions={{
-        // headerShadowVisible: false,
-        // headerShown: false,
-        ///tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        headerShown: false,
+        title: '',
         headerStyle: {
           backgroundColor: COLORS.primary,
         },
+
         tabBarShowLabel: false,
-        // headerShadowVisible: false,
 
         tabBarStyle: {
           height: 65,
-          backgroundColor: "#00ADB5",
+          backgroundColor: '#00ADB5',
         },
-        headerRight: () => (
-          <Link href="/modal" asChild>
-            <Pressable>
-              {({ pressed }) => (
-                <FontAwesome
-                  name="info-circle"
-                  size={25}
-                  color={Colors[colorScheme ?? "light"].text}
-                  style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                />
-              )}
-            </Pressable>
-          </Link>
-        ),
-        // tabBarItemStyle: {
-        //   // backgroundColor: "#D0D0D0",
-        //   // borderColor: "#FFFFFF",
-        //   // borderWidth: 2,
-        //   // borderRadius: 200,
-        //   // height: 50,
 
-        //   // alignItems: "center",
-        //   marginHorizontal: 16,
-        // },
+        tabBarItemStyle: {
+          marginHorizontal: 16,
+        },
       }}
     >
       <Tabs.Screen
         name="three"
         options={{
-          title: "Tab One",
+          title: 'Tab One',
           headerShadowVisible: false,
 
           tabBarIcon: ({ focused }) => (
@@ -90,7 +58,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: "Tab Two",
+          title: 'Tab Two',
           tabBarIcon: ({ focused }) => (
             <>
               <View style={tabStyle.main(focused)}>
@@ -108,8 +76,6 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Tab Three",
-
           tabBarIcon: ({ focused }) => (
             <View style={tabStyle.main(focused)}>
               <Image
@@ -125,7 +91,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="four"
         options={{
-          title: "Tab Three",
+          title: 'Tab Three',
 
           tabBarIcon: ({ focused }) => (
             <View style={tabStyle.main(focused)}>

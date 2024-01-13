@@ -1,6 +1,6 @@
 /** @format */
 
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router';
 
 export default function AuthLayout() {
   return (
@@ -9,7 +9,7 @@ export default function AuthLayout() {
         name="login"
         options={{
           headerShadowVisible: false,
-          statusBarStyle: "dark",
+          statusBarStyle: 'dark',
           headerShown: false,
         }}
       />
@@ -17,7 +17,7 @@ export default function AuthLayout() {
         name="sign-up"
         options={{
           headerShadowVisible: false,
-          statusBarStyle: "dark",
+          statusBarStyle: 'dark',
           headerShown: false,
         }}
       />

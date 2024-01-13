@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Button,
   SafeAreaView,
@@ -10,14 +10,15 @@ import {
   View,
   Image,
   ScrollView,
-} from "react-native";
-import { COLORS, FONT, SIZES, icons } from "../../constants";
-import { Link, Stack } from "expo-router";
+} from 'react-native';
+import { COLORS, FONT, SIZES, icons } from '../../constants';
+import { Link, Stack } from 'expo-router';
+import FocusAwareStatusBar from '../../components/common/AppStatusBar';
 
 export default function Login() {
   const [login, setLogin] = useState({
-    phoneNumber: "",
-    password: "",
+    phoneNumber: '',
+    password: '',
   });
 
   return (
@@ -81,21 +82,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: COLORS.lightWhite,
+    justifyContent: 'center',
   },
 
   loginWrapper: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     padding: 50,
     gap: 20,
   },
 
   logoWrapper: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   logo: {
@@ -108,13 +108,13 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: COLORS.primary,
   },
 
   textBox: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     backgroundColor: COLORS.white,
     height: 50,
     borderRadius: SIZES.xxSmall,
@@ -130,10 +130,10 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
   },
   button: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "flex-end",
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
     gap: 20,
   },
   createAccountBtn: {
@@ -141,14 +141,14 @@ const styles = StyleSheet.create({
     padding: SIZES.xSmall,
     borderRadius: 2,
     color: COLORS.lightWhite,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   signUp: {
     height: 100,
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
     gap: 20,
     marginVertical: SIZES.medium,
   },
