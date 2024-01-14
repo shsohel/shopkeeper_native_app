@@ -20,7 +20,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        title: '',
+        title: "",
         headerStyle: {
           backgroundColor: COLORS.primary,
         },
@@ -29,7 +29,7 @@ export default function TabLayout() {
 
         tabBarStyle: {
           height: 65,
-          backgroundColor: '#00ADB5',
+          backgroundColor: "#00ADB5",
         },
 
         tabBarItemStyle: {
@@ -38,9 +38,9 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="three"
+        name="customers"
         options={{
-          title: 'Tab One',
+          title: "Customers",
           headerShadowVisible: false,
 
           tabBarIcon: ({ focused }) => (
@@ -56,9 +56,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="orders"
         options={{
-          title: 'Tab Two',
+          title: "Orders",
           tabBarIcon: ({ focused }) => (
             <>
               <View style={tabStyle.main(focused)}>
@@ -89,10 +89,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="four"
+        name="notifications"
         options={{
-          title: 'Tab Three',
-
+          title: "Notifications",
           tabBarIcon: ({ focused }) => (
             <View style={tabStyle.main(focused)}>
               <Image

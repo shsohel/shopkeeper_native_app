@@ -6,6 +6,7 @@ import { COLORS, FONT, SIZES } from "../../constants";
 import React, { useState } from "react";
 import CustomerCard from "./CustomerCard";
 import { useRouter } from "expo-router";
+import NotificationCard from "./NotificationCard";
 
 const data = [
   {
@@ -78,7 +79,7 @@ const Customers = () => {
           <Text>Something Went Wrong!</Text>
         ) : (
           data?.map((customer) => (
-            <CustomerCard
+            <NotificationCard
               customer={customer}
               key={`${customer.id}`}
               handleNavigate={() => router.push(`/customer/${customer?.id}`)}

@@ -1,21 +1,30 @@
 /** @format */
 
-import {
-  Button,
-  Text,
-  Platform,
-  Dimensions,
-  SafeAreaView,
-  StyleSheet,
-  View,
-  ScrollView,
-} from "react-native";
+import { Text, Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
 
 import { useRouter } from "expo-router";
 
 import { COLORS, FONT, SIZES } from "../../constants";
 import Card from "../../components/common/Card";
 import Customers from "../../components/home/Customers";
+
+import CustomerOrders from "../../components/home/CustomerOrders";
+import Tabs from "../../components/common/Tabs";
+
+const tabs = [
+  {
+    id: "customers",
+    name: "কাস্টমার",
+    components: <Customers />,
+    isActive: true,
+  },
+  {
+    id: "orders",
+    name: "অর্ডার",
+    components: <CustomerOrders />,
+    isActive: false,
+  },
+];
 
 export default function TabHomeScreen() {
   const router = useRouter();
@@ -35,13 +44,26 @@ export default function TabHomeScreen() {
           <Text style={styles.month}>(জানুয়ারী, ২০২৪)</Text>
         </Card>
       </View>
-      <View style={styles.customerContainer}>
-        <View>
-          <Text style={styles.customerTitle}>কাস্টমার</Text>
+      {/* <View style={styles.tabContainer}>
+        <View style={styles.tabs(width)}>
+          {tabControl.map((tab) => {
+            return (
+              <View key={tab.id}>
+                <Pressable onPress={() => handleTabControl(tab)}>
+                  <View style={styles.tab(isActive(tab))}>
+                    <Text style={styles.txt(isActive(tab))}>{tab.name}</Text>
+                  </View>
+                </Pressable>
+              </View>
+            );
+          })}
         </View>
-        <ScrollView>
-          <Customers />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {getActiveTabComponent()}
         </ScrollView>
+      </View> */}
+      <View style={styles.tabMainContainer}>
+        <Tabs tabs={tabs} />
       </View>
     </SafeAreaView>
   );
@@ -74,8 +96,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: COLORS.white,
   },
-  customerContainer: {
-    padding: 5,
+  tabMainContainer: {
+    paddingBottom: 50,
   },
   customerTitle: {
     fontSize: SIZES.large,

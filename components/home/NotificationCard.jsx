@@ -13,36 +13,20 @@ import {
 import { COLORS, FONT, SHADOWS, SIZES } from "../../constants";
 import { checkImageURL } from "../../utils";
 
-const CustomerCard = ({ customer, handleNavigate }) => {
+const NotificationCard = ({ customer, handleNavigate }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={handleNavigate}>
-      <TouchableOpacity style={styles.photoContainer}>
-        <Image
-          source={{
-            uri: checkImageURL(customer.image)
-              ? customer.image
-              : "https://img.freepik.com/premium-vector/vector-flat-illustration-woman-avatar-avatar-smiling-young-woman_469123-477.jpg",
-          }}
-          resizeMode="contain"
-          style={styles.customerImage}
-        />
-      </TouchableOpacity>
-
       <View style={styles.textContainer}>
         <Text style={styles.customerName} numberOfLines={1}>
           {customer.name}
         </Text>
         <Text style={styles.location}>{customer.address}</Text>
       </View>
-
-      <View style={styles.numberContainer}>
-        <Text style={styles.taka}>{`৳ ${customer.due}`}</Text>
-      </View>
     </TouchableOpacity>
   );
 };
 
-export default CustomerCard;
+export default NotificationCard;
 
 const styles = StyleSheet.create({
   container: {
@@ -70,12 +54,11 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    marginHorizontal: SIZES.medium,
+    marginRight: SIZES.medium,
   },
 
   customerName: {
     fontSize: SIZES.medium,
-    fontFamily: "DMBold",
     color: COLORS.primary,
   },
   location: {
