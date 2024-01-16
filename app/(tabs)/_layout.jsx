@@ -107,7 +107,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="five"
+        name="profile"
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={tabStyle.main(focused)}>
