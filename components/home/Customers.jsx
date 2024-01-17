@@ -81,7 +81,7 @@ const Customers = () => {
             <CustomerCard
               customer={customer}
               key={`${customer.id}`}
-              handleNavigate={() => router.push(`/customer/${customer?.id}`)}
+              handleNavigate={() => router.push(`/customers/${customer?.id}`)}
             />
           ))
         )}

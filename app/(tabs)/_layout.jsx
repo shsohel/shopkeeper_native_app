@@ -29,7 +29,7 @@ export default function TabLayout() {
 
         tabBarStyle: {
           height: 65,
-          backgroundColor: "#00ADB5",
+          backgroundColor: COLORS.primary,
         },
 
         tabBarItemStyle: {

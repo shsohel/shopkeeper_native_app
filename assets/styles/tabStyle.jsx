@@ -6,7 +6,7 @@ import { FC } from "react";
 
 export const tabStyle = StyleSheet.create({
   main: (active) => ({
-    backgroundColor: active ? COLORS.appColor.primaryColor : "#D0D0D0",
+    backgroundColor: active ? COLORS.primary : "#D0D0D0",
     borderColor: active ? "none" : "white",
     borderWidth: active ? 0 : 2,
 
