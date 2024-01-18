@@ -84,7 +84,7 @@ const CustomerOrders = () => {
             <OrderCard
               order={order}
               key={`${order.id}`}
-              handleNavigate={() => router.push(`/order/${order?.id}`)}
+              handleNavigate={() => router.push(`/orders/${order?.id}`)}
             />
           ))
         )}

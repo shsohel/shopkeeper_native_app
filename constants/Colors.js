@@ -12,6 +12,7 @@ export default {
 
   white: "#F3F4F8",
   lightWhite: "#FAFAFC",
+  solidWhite: "#FFFFFF",
   light: {
     text: "#000",
     background: "#fff",
@@ -25,9 +26,5 @@ export default {
     tint: tintColorDark,
     tabIconDefault: "#ccc",
     tabIconSelected: tintColorDark,
-  },
-  appColor: {
-    primaryColor: "#00ADB5",
-    gray: "#D0D0D0",
   },
 };

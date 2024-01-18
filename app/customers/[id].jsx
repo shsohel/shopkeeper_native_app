@@ -27,7 +27,7 @@ const CustomerDerails = () => {
             />
           ),
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
+            <ScreenHeaderBtn iconUrl={icons.more} dimension="60%" />
           ),
           headerTitle: "",
         }}

@@ -24,6 +24,7 @@ import chevronLeft from "../../assets/images/icons/chevron-left.png";
 import chevronRight from "../../assets/images/icons/chevron-right.png";
 import copyRight from "../../assets/images/icons/copyright.png";
 import logout from "../../assets/images/icons/logout.png";
+import more from "../../assets/images/icons/more_icon.png";
 
 export default {
   customerIcon,
@@ -50,4 +51,5 @@ export default {
   chevronRight,
   copyRight,
   logout,
+  more,
 };
