@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React from 'react';
 import {
   Pressable,
   SafeAreaView,
@@ -9,35 +9,35 @@ import {
   Text,
   View,
   Button,
-} from "react-native";
-import { Stack, useLocalSearchParams, useRouter } from "expo-router";
-import ScreenHeaderBtn from "../../components/common/ScreenHeaderBtn";
-import { COLORS, FONT, SIZES, icons } from "../../constants";
+} from 'react-native';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import ScreenHeaderBtn from '../../components/common/ScreenHeaderBtn';
+import { COLORS, FONT, SIZES, icons } from '../../constants';
 
 const orderItemsData = [
   {
     id: 1,
-    name: "আলু",
-    quantity: "২",
-    unit: "কেজি",
+    name: 'আলু',
+    quantity: '২',
+    unit: 'কেজি',
   },
   {
     id: 2,
-    name: "সয়াবিন তেল",
-    quantity: "২",
-    unit: "লিটার",
+    name: 'সয়াবিন তেল',
+    quantity: '২',
+    unit: 'লিটার',
   },
   {
     id: 3,
-    name: "পিঁয়াজ",
-    quantity: "১",
-    unit: "কেজি",
+    name: 'পিঁয়াজ',
+    quantity: '১',
+    unit: 'কেজি',
   },
   {
     id: 4,
-    name: "চিনি",
-    quantity: "২৫০",
-    unit: "গ্রাম",
+    name: 'চিনি',
+    quantity: '২৫০',
+    unit: 'গ্রাম',
   },
 ];
 
@@ -64,7 +64,7 @@ const OrderDetails = () => {
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={icons.more} dimension="60%" />
           ),
-          headerTitle: "",
+          headerTitle: '',
         }}
       />
 
@@ -96,14 +96,23 @@ const OrderDetails = () => {
           <Text style={styles.dotTxt}>:</Text>
           <View
             style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
               gap: 10,
             }}
           >
             <Text style={styles.pendingTxt}>অপেক্ষমান</Text>
-            <Pressable>
+            <Pressable
+              onPress={() => {
+                router.push({
+                  pathname: `/orders/manage-order`,
+                  params: {
+                    order: orderItemsData,
+                  },
+                });
+              }}
+            >
               <Text style={styles.btn}>গ্রহণ করুন</Text>
             </Pressable>
           </View>
@@ -162,10 +171,10 @@ const styles = StyleSheet.create({
     padding: SIZES.small,
   },
   txtContainer: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
     columnGap: 5,
-    alignItems: "center",
+    alignItems: 'center',
     marginVertical: 5,
   },
   txt: {
@@ -217,14 +226,14 @@ const styles = StyleSheet.create({
     color: COLORS.lightWhite,
     padding: 4,
     fontSize: SIZES.small,
-    fontWeight: "600",
+    fontWeight: '600',
     borderRadius: SIZES.xxSmall,
   },
   lineContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     columnGap: 4,
     marginBottom: 10,
   },
@@ -235,6 +244,6 @@ const styles = StyleSheet.create({
   },
   hairline: {
     borderWidth: 0.2,
-    width: "78%",
+    width: '78%',
   },
 });
