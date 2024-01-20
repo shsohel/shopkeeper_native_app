@@ -31,19 +31,18 @@ const CustomerDerails = () => {
           ),
           headerTitle: "",
         }}
-      >
-        <View style={{ flex: 1 }}>
-          <Pressable
-            onPress={() => {
-              handleRouter("/");
-            }}
-          >
-            <View>
-              <Text>Hello</Text>
-            </View>
-          </Pressable>
-        </View>
-      </Stack.Screen>
+      />
+      <View style={{ flex: 1 }}>
+        <Pressable
+          onPress={() => {
+            handleRouter("/");
+          }}
+        >
+          <View>
+            <Text>Hello</Text>
+          </View>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 };
