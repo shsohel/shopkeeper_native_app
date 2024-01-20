@@ -89,13 +89,28 @@ export default function ManageOrder() {
                 <View style={styles.price}>
                   <Text style={styles.headingTxt}>দাম/মূল্য </Text>
                   <Text style={styles.dotTxt}>:</Text>
-                  <TextInput
-                    style={{ padding: 1, backgroundColor: COLORS.gray2 }}
-                    inputMode="decimal"
-                    value={convertToBangla(product.price)}
-                    onChangeText={(text) => handlePriceChange(text, product.id)}
-                    selectTextOnFocus={true}
-                  />
+                  <View>
+                    <TextInput
+                      style={{
+                        paddingHorizontal: 4,
+                        paddingVertical: 2,
+                        width: 90,
+                        backgroundColor: COLORS.white,
+                        borderRadius: 4,
+                        borderWidth: 1,
+                        borderColor: COLORS.gray2,
+                        textAlign: "right",
+                        fontSize: SIZES.medium,
+                        fontFamily: FONT.medium,
+                      }}
+                      inputMode="decimal"
+                      value={convertToBangla(product.price)}
+                      onChangeText={(text) =>
+                        handlePriceChange(text, product.id)
+                      }
+                      selectTextOnFocus={true}
+                    />
+                  </View>
                   <Text style={styles.headingTxt}>টাকা</Text>
                 </View>
               </View>
@@ -108,7 +123,9 @@ export default function ManageOrder() {
             <Text style={styles.headingTxt}>মোট দাম </Text>
             <Text style={styles.dotTxt}>:</Text>
             <View>
-              <Text style={{ padding: 2 }}>
+              <Text
+                style={{ paddingHorizontal: 2, width: 90, textAlign: "right" }}
+              >
                 {convertToBangla(totalPrice.toString())}
               </Text>
             </View>
@@ -177,7 +194,7 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.xxSmall,
     borderWidth: 1,
     borderColor: COLORS.gray2,
-    padding: SIZES.xxSmall,
+    paddingHorizontal: SIZES.xxSmall,
   },
   dotTxt: {
     fontSize: SIZES.medium,
@@ -199,7 +216,8 @@ const styles = StyleSheet.create({
   orderValueTxt: {
     fontSize: SIZES.medium,
     fontFamily: FONT.medium,
-    width: 90,
+    width: 128,
+    textAlign: "right",
   },
   footerContainer: {
     padding: 10,
