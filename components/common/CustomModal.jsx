@@ -12,7 +12,7 @@ import CustomBtn from './CustomBtn';
 import { COLORS, SIZES, SHADOWS, icons } from '../../constants';
 
 export default function CustomModal(props) {
-  const { handlePress, title, children } = props;
+  const { handlePress, title, footer, children } = props;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -36,6 +36,7 @@ export default function CustomModal(props) {
         >
           {children}
         </ScrollView>
+        {footer && footer}
       </View>
     </SafeAreaView>
   );

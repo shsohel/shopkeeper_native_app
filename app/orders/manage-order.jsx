@@ -1,84 +1,101 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import React from 'react';
-import { COLORS, SIZES, FONT } from '../../constants';
-import { router, useLocalSearchParams } from 'expo-router';
-import CustomModal from '../../components/common/CustomModal';
+/** @format */
 
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import { COLORS, SIZES, FONT } from "../../constants";
+import { router, useLocalSearchParams } from "expo-router";
+import CustomModal from "../../components/common/CustomModal";
+import { convertToBangla, convertToEnglish } from "../../utils";
+import _ from "lodash";
 const orderItemsData = [
   {
     id: 1,
-    name: 'আলু',
-    quantity: '২',
-    unit: 'কেজি',
+    name: "আলু",
+    quantity: "২",
+    unit: "কেজি",
+    price: "0",
   },
   {
     id: 2,
-    name: 'সয়াবিন তেল',
-    quantity: '২',
-    unit: 'লিটার',
+    name: "সয়াবিন তেল",
+    quantity: "২",
+    unit: "লিটার",
+    price: "0",
   },
   {
     id: 3,
-    name: 'পিঁয়াজ',
-    quantity: '১',
-    unit: 'কেজি',
+    name: "পিঁয়াজ",
+    quantity: "১",
+    unit: "কেজি",
+    price: "0",
   },
   {
     id: 4,
-    name: 'চিনি',
-    quantity: '২৫০',
-    unit: 'গ্রাম',
+    name: "চিনি",
+    quantity: "২৫০",
+    unit: "গ্রাম",
+    price: "2",
   },
 ];
 
 export default function ManageOrder() {
   const params = useLocalSearchParams();
-  console.log(params);
+  const [orders, setOrders] = useState(orderItemsData);
+
+  const handlePriceChange = (text, id) => {
+    const findIndex = orders.findIndex((o) => o.id === id);
+    const deepCloneOrders = [...orders];
+    deepCloneOrders[findIndex].price = convertToEnglish(text);
+    setOrders(deepCloneOrders);
+  };
+
   const handlePress = () => {
     router.back();
   };
+
+  const totalPrice = _.sum(orders.map((order) => Number(order.price)));
+
   return (
-    <CustomModal title="অর্ডার মেনেজ" handlePress={handlePress}>
+    <CustomModal
+      title="অর্ডার মেনেজ"
+      handlePress={handlePress}
+      footer={
+        <View style={styles.footerContainer}>
+          <Pressable>
+            <Text style={styles.btn(true)}>গ্রহণ করুন</Text>
+          </Pressable>
+          <Pressable>
+            <Text style={styles.btn(false)}>বাতিল করুন</Text>
+          </Pressable>
+        </View>
+      }
+    >
       <View style={styles.detailsContainer}>
         <View style={styles.lineContainer}>
           <Text style={styles.lineTxt}>দাম নির্ধারণ : </Text>
           <View style={styles.hairline} />
         </View>
-        {orderItemsData.map((product) => {
+        {orders.map((product) => {
           return (
             <View key={product.id} style={styles.productContainer}>
               <View style={styles.txtContainer}>
                 <Text style={styles.headingTxt}>{product.name}</Text>
                 <Text style={styles.dotTxt}>:</Text>
-                <View
-                  style={{
-                    backgroundColor: COLORS.gray2,
-                    borderRadius: 3,
-                  }}
-                >
-                  <TextInput style={{ padding: 2 }} value={product.quantity} />
-                </View>
-                <View
-                  style={{
-                    backgroundColor: COLORS.gray2,
-                    borderRadius: 3,
-                  }}
-                >
-                  <TextInput style={{ padding: 2 }} value={product.unit} />
-                </View>
+                <Text
+                  style={styles.orderValueTxt}
+                >{`${product.quantity} ${product.unit}`}</Text>
               </View>
               <View style={styles.priceContainer}>
                 <View style={styles.price}>
                   <Text style={styles.headingTxt}>দাম/মূল্য </Text>
                   <Text style={styles.dotTxt}>:</Text>
-                  <View
-                    style={{
-                      backgroundColor: COLORS.gray2,
-                      borderRadius: 3,
-                    }}
-                  >
-                    <TextInput style={{ padding: 2 }} value="২০০" />
-                  </View>
+                  <TextInput
+                    style={{ padding: 1, backgroundColor: COLORS.gray2 }}
+                    inputMode="decimal"
+                    value={convertToBangla(product.price)}
+                    onChangeText={(text) => handlePriceChange(text, product.id)}
+                    selectTextOnFocus={true}
+                  />
                   <Text style={styles.headingTxt}>টাকা</Text>
                 </View>
               </View>
@@ -91,7 +108,9 @@ export default function ManageOrder() {
             <Text style={styles.headingTxt}>মোট দাম </Text>
             <Text style={styles.dotTxt}>:</Text>
             <View>
-              <Text style={{ padding: 2 }}>৯৯৪৯</Text>
+              <Text style={{ padding: 2 }}>
+                {convertToBangla(totalPrice.toString())}
+              </Text>
             </View>
             <Text style={styles.headingTxt}>টাকা</Text>
           </View>
@@ -108,10 +127,10 @@ const styles = StyleSheet.create({
     padding: SIZES.small,
   },
   lineContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     columnGap: 4,
     marginBottom: 10,
   },
@@ -122,12 +141,12 @@ const styles = StyleSheet.create({
   },
   hairline: {
     borderWidth: 0.3,
-    width: '78%',
+    width: "78%",
   },
   priceEndingLine: {
     marginVertical: 5,
     borderWidth: 0.3,
-    width: '100%',
+    width: "100%",
   },
   productContainer: {
     marginVertical: 5,
@@ -137,10 +156,10 @@ const styles = StyleSheet.create({
     padding: SIZES.xxSmall,
   },
   txtContainer: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     columnGap: 5,
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 5,
     borderRadius: SIZES.xxSmall,
     borderWidth: 1,
@@ -148,10 +167,10 @@ const styles = StyleSheet.create({
     padding: SIZES.xxSmall,
   },
   price: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     columnGap: 5,
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 5,
   },
   priceContainer: {
@@ -182,4 +201,18 @@ const styles = StyleSheet.create({
     fontFamily: FONT.medium,
     width: 90,
   },
+  footerContainer: {
+    padding: 10,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  btn: (accept) => ({
+    backgroundColor: accept ? COLORS.primary : COLORS.gray2,
+    color: accept ? COLORS.lightWhite : COLORS.secondary,
+    padding: 4,
+    fontSize: SIZES.medium,
+    fontWeight: "600",
+    borderRadius: SIZES.xxSmall,
+  }),
 });
