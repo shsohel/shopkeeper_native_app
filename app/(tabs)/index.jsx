@@ -1,26 +1,27 @@
 /** @format */
 
-import { Text, Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
+import { Text, Dimensions, SafeAreaView, StyleSheet, View } from 'react-native';
 
-import { useRouter } from "expo-router";
+import { useRouter } from 'expo-router';
 
-import { COLORS, FONT, SIZES } from "../../constants";
-import Card from "../../components/common/Card";
-import Customers from "../../components/home/Customers";
+import { COLORS, FONT, SIZES } from '../../constants';
+import Card from '../../components/common/Card';
+import Customers from '../../components/home/Customers';
 
-import CustomerOrders from "../../components/home/CustomerOrders";
-import Tabs from "../../components/common/Tabs";
+import CustomerOrders from '../../components/home/CustomerOrders';
+import Tabs from '../../components/common/Tabs';
+import Animated, { SlideInDown } from 'react-native-reanimated';
 
 const tabs = [
   {
-    id: "customers",
-    name: "কাস্টমার",
+    id: 'customers',
+    name: 'কাস্টমার',
     components: <Customers />,
     isActive: true,
   },
   {
-    id: "orders",
-    name: "অর্ডার",
+    id: 'orders',
+    name: 'অর্ডার',
     components: <CustomerOrders />,
     isActive: false,
   },
@@ -28,11 +29,14 @@ const tabs = [
 
 export default function TabHomeScreen() {
   const router = useRouter();
-  const { width } = Dimensions.get("screen");
+  const { width } = Dimensions.get('screen');
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.twoCardContainer(width)}>
+      <Animated.View
+        entering={SlideInDown}
+        style={styles.twoCardContainer(width)}
+      >
         <Card width="49%">
           <Text style={styles.cardTitle}>বাকিতে বিক্রয়</Text>
           <Text style={styles.taka}>{`৳ ২০৯৪৬`}</Text>
@@ -43,7 +47,7 @@ export default function TabHomeScreen() {
           <Text style={styles.taka}>{`৳ ৭৯৮৫`}</Text>
           <Text style={styles.month}>(জানুয়ারী, ২০২৪)</Text>
         </Card>
-      </View>
+      </Animated.View>
       {/* <View style={styles.tabContainer}>
         <View style={styles.tabs(width)}>
           {tabControl.map((tab) => {
@@ -76,9 +80,9 @@ const styles = StyleSheet.create({
     // alignItems: "center",
   },
   twoCardContainer: (width) => ({
-    display: "flex",
+    display: 'flex',
     columnGap: 5,
-    flexDirection: "row",
+    flexDirection: 'row',
     width: width,
     padding: 5,
     // backgroundColor: COLORS.primary,
@@ -90,10 +94,10 @@ const styles = StyleSheet.create({
   taka: {
     color: COLORS.white,
     fontSize: 29,
-    textAlign: "center",
+    textAlign: 'center',
   },
   month: {
-    textAlign: "center",
+    textAlign: 'center',
     color: COLORS.white,
   },
   tabMainContainer: {
