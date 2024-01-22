@@ -10,40 +10,47 @@ import {
   View,
   Button,
 } from 'react-native';
-import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import ScreenHeaderBtn from '../../components/common/ScreenHeaderBtn';
-import { COLORS, FONT, SIZES, icons } from '../../constants';
+import {
+  Stack,
+  useLocalSearchParams,
+  useNavigation,
+  useRouter,
+} from "expo-router";
+import ScreenHeaderBtn from "../../components/common/ScreenHeaderBtn";
+import { COLORS, FONT, SIZES, icons } from "../../constants";
+import { DrawerActions } from "@react-navigation/native";
 
 const orderItemsData = [
   {
     id: 1,
-    name: 'আলু',
-    quantity: '২',
-    unit: 'কেজি',
+    name: "আলু",
+    quantity: "২",
+    unit: "কেজি",
   },
   {
     id: 2,
-    name: 'সয়াবিন তেল',
-    quantity: '২',
-    unit: 'লিটার',
+    name: "সয়াবিন তেল",
+    quantity: "২",
+    unit: "লিটার",
   },
   {
     id: 3,
-    name: 'পিঁয়াজ',
-    quantity: '১',
-    unit: 'কেজি',
+    name: "পিঁয়াজ",
+    quantity: "১",
+    unit: "কেজি",
   },
   {
     id: 4,
-    name: 'চিনি',
-    quantity: '২৫০',
-    unit: 'গ্রাম',
+    name: "চিনি",
+    quantity: "২৫০",
+    unit: "গ্রাম",
   },
 ];
 
 const OrderDetails = () => {
   const params = useLocalSearchParams();
   const router = useRouter();
+  const navigation = useNavigation();
   const handleRouter = () => {
     router.back();
   };
@@ -62,9 +69,15 @@ const OrderDetails = () => {
             />
           ),
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.more} dimension="60%" />
+            <ScreenHeaderBtn
+              handlePress={() => {
+                // navigation.dispatch(DrawerActions.openDrawer());
+              }}
+              iconUrl={icons.more}
+              dimension="60%"
+            />
           ),
-          headerTitle: '',
+          headerTitle: "",
         }}
       />
 
@@ -96,9 +109,9 @@ const OrderDetails = () => {
           <Text style={styles.dotTxt}>:</Text>
           <View
             style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
               gap: 10,
             }}
           >

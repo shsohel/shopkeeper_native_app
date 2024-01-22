@@ -11,7 +11,7 @@ const OrderLayout = () => {
         options={{
           headerShown: false,
           // Set the presentation mode to modal for our modal route.
-          presentation: 'modal',
+          presentation: "modal",
         }}
       />
     </Stack>
@@ -19,3 +19,4 @@ const OrderLayout = () => {
 };
 
 export default OrderLayout;
+ 

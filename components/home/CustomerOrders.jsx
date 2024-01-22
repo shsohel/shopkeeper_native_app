@@ -118,5 +118,6 @@ const styles = StyleSheet.create({
   cardsContainer: {
     marginTop: SIZES.medium,
     gap: SIZES.small,
+    // padding: SIZES.small,
   },
 });

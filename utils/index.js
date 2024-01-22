@@ -31,7 +31,9 @@ export const convertToBangla = (english_number) => {
     return retStr;
   };
 
-  var bangla_converted_number = english_number.getDigitBanglaFromEnglish();
+  var bangla_converted_number = english_number
+    .toString()
+    .getDigitBanglaFromEnglish();
   return bangla_converted_number;
 };
 export const convertToEnglish = (english_number) => {
@@ -56,6 +58,8 @@ export const convertToEnglish = (english_number) => {
     return retStr;
   };
 
-  var bangla_converted_number = english_number.getDigitBanglaFromEnglish();
+  var bangla_converted_number = english_number
+    .toString()
+    .getDigitBanglaFromEnglish();
   return bangla_converted_number;
 };

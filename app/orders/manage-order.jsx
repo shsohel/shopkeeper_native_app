@@ -41,6 +41,7 @@ const orderItemsData = [
 export default function ManageOrder() {
   const params = useLocalSearchParams();
   const [orders, setOrders] = useState(orderItemsData);
+  const [paidPayment, setPaidPayment] = useState(0);
 
   const handlePriceChange = (text, id) => {
     const findIndex = orders.findIndex((o) => o.id === id);
@@ -54,7 +55,11 @@ export default function ManageOrder() {
   };
 
   const totalPrice = _.sum(orders.map((order) => Number(order.price)));
+  const totalExistingPayment = Number(totalPrice) - Number(paidPayment);
 
+  const handlePaidPayment = (text) => {
+    setPaidPayment(convertToEnglish(text));
+  };
   return (
     <CustomModal
       title="অর্ডার মেনেজ"
@@ -132,6 +137,49 @@ export default function ManageOrder() {
             <Text style={styles.headingTxt}>টাকা</Text>
           </View>
         </View>
+        <View style={styles.priceContainer}>
+          <View style={styles.price}>
+            <Text style={styles.headingTxt}>পরিশোধ </Text>
+            <Text style={styles.dotTxt}>:</Text>
+            <View>
+              <View>
+                <TextInput
+                  style={{
+                    paddingHorizontal: 4,
+                    paddingVertical: 2,
+                    width: 90,
+                    backgroundColor: COLORS.white,
+                    borderRadius: 4,
+                    borderWidth: 1,
+                    borderColor: COLORS.gray2,
+                    textAlign: "right",
+                    fontSize: SIZES.medium,
+                    fontFamily: FONT.medium,
+                  }}
+                  inputMode="decimal"
+                  value={convertToBangla(paidPayment)}
+                  onChangeText={(text) => handlePaidPayment(text)}
+                  selectTextOnFocus={true}
+                />
+              </View>
+            </View>
+            <Text style={styles.headingTxt}>টাকা</Text>
+          </View>
+        </View>
+        <View style={styles.priceContainer}>
+          <View style={styles.price}>
+            <Text style={styles.headingTxt}>বাকি </Text>
+            <Text style={styles.dotTxt}>:</Text>
+            <View>
+              <Text
+                style={{ paddingHorizontal: 2, width: 90, textAlign: "right" }}
+              >
+                {convertToBangla(totalExistingPayment)}
+              </Text>
+            </View>
+            <Text style={styles.headingTxt}>টাকা</Text>
+          </View>
+        </View>
       </View>
     </CustomModal>
   );
@@ -195,6 +243,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.gray2,
     paddingHorizontal: SIZES.xxSmall,
+    marginVertical: SIZES.xxSmall,
   },
   dotTxt: {
     fontSize: SIZES.medium,
