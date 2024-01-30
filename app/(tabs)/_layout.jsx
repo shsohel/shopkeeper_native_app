@@ -1,21 +1,17 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Stack, Tabs, useNavigation, useRouter } from 'expo-router';
-import {
-  Button,
-  Image,
-  Pressable,
-  Text,
-  View,
-  useColorScheme,
-} from 'react-native';
+/** @format */
 
-import Colors from '../../constants/Colors';
-import { COLORS, icons } from '../../constants';
-import { tabStyle } from '../../assets/styles/tabStyle';
-import { DrawerActions } from '@react-navigation/native';
+import { Redirect, Tabs, useRouter } from "expo-router";
+import { Image, View } from "react-native";
 
+import { COLORS, icons } from "../../constants";
+import { tabStyle } from "../../assets/styles/tabStyle";
+import { useSelector } from "react-redux";
 export default function TabLayout() {
   const router = useRouter();
+  const { authUser } = useSelector(({ auth }) => auth);
+
+  if (!authUser) return <Redirect href={"/auth/login"} />;
+
   return (
     <Tabs
       screenOptions={{

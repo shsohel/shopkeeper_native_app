@@ -10,10 +10,10 @@ import {
   View,
 } from "react-native";
 import { COLORS, FONT, SIZES } from "../../constants";
+const { width } = Dimensions.get("screen");
 
 const Tabs = (props) => {
   const { tabs } = props;
-  const { width } = Dimensions.get("screen");
   const [tabControl, setTabControl] = useState(tabs);
 
   const handleTabControl = (selectedTab) => {

@@ -10,8 +10,13 @@ import {
 } from "react-native";
 import { COLORS, FONT, SIZES, icons } from "../../constants";
 import images from "../../constants/images";
-
+import { useDispatch } from "react-redux";
+import { bindAuthUser } from "../../store/auth";
 export default function ProfileTab() {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(bindAuthUser(null));
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.intoContainer}>
@@ -24,6 +29,9 @@ export default function ProfileTab() {
         <View>
           <Text style={styles.name}>SH SOHEL</Text>
         </View>
+        <Pressable onPress={() => handleLogout()}>
+          <Text style={styles.logoutBtn}>Logout</Text>
+        </Pressable>
       </View>
       <View style={styles.detailsContainer}>
         <View style={styles.txtContainer}>
@@ -105,9 +113,18 @@ const styles = StyleSheet.create({
   },
 
   name: {
-    fontSize: SIZES.large,
+    fontSize: SIZES.medium,
     fontFamily: FONT.medium,
     color: COLORS.primary,
+  },
+  logoutBtn: {
+    fontSize: SIZES.small,
+    fontFamily: FONT.bold,
+    color: COLORS.solidWhite,
+    backgroundColor: COLORS.primary,
+    padding: SIZES.xxSmall,
+    borderRadius: SIZES.xxxSmall,
+    marginVertical: SIZES.small,
   },
   txt: {
     fontSize: SIZES.large,

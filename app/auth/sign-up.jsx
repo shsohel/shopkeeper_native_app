@@ -9,11 +9,13 @@ import {
   TextInput,
   View,
   Image,
+  Pressable,
 } from "react-native";
 import { COLORS, FONT, SIZES, icons } from "../../constants";
 import { Link } from "expo-router";
 
 export default function SignUp() {
+  const [whom, setWhom] = useState("shopkeeper");
   const [signUp, setSignUp] = useState({
     name: "",
     phoneNumber: "",
@@ -28,9 +30,28 @@ export default function SignUp() {
             <Image source={icons.customerIcon} />
           </View>
         </View>
-        <View>
-          <Text style={styles.title}>একাউন্ট তৈরি করুন</Text>
+        <View style={styles.loginTxt}>
+          <View>
+            <Text style={styles.title}> একাউন্ট তথ্য </Text>
+          </View>
+          <View style={styles.who}>
+            <Pressable
+              onPress={() => {
+                setWhom("shopkeeper");
+              }}
+            >
+              <Text style={styles.whoBtn(whom === "shopkeeper")}>দোকানদার</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                setWhom("customer");
+              }}
+            >
+              <Text style={styles.whoBtn(whom === "customer")}>কাস্টমার</Text>
+            </Pressable>
+          </View>
         </View>
+
         <View style={styles.textBox}>
           <TextInput
             style={styles.input}
@@ -122,11 +143,28 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
   },
 
+  loginTxt: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  who: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 5,
+  },
+  whoBtn: (active) => ({
+    backgroundColor: active ? COLORS.white : COLORS.primary,
+    padding: SIZES.xxSmall,
+    color: active ? COLORS.primary : COLORS.white,
+    borderBottomColor: active ? COLORS.primary : COLORS.white,
+    borderBottomWidth: active ? 2 : 0,
+  }),
+
   textBox: {
     display: "flex",
     justifyContent: "center",
     backgroundColor: COLORS.white,
-    height: 50,
+    height: 40,
     borderRadius: SIZES.xxSmall,
     borderWidth: 1,
     borderColor: COLORS.gray,

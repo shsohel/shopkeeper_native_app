@@ -3,6 +3,9 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import React, { useEffect } from 'react';
+import { Provider } from "react-redux";
+import { persistor, store } from "../store";
+import { PersistGate } from "redux-persist/integration/react";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -46,23 +49,27 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <Stack
-      screenOptions={{
-        headerShadowVisible: false,
-        statusBarStyle: "dark",
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="(tabs)" options={{}} />
-      <Stack.Screen name="(drawers)" options={{}} />
-      <Stack.Screen name="auth" />
-      <Stack.Screen
-        name="modal"
-        options={{
-          // Set the presentation mode to modal for our modal route.
-          presentation: "modal",
-        }}
-      />
-    </Stack>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Stack
+          screenOptions={{
+            headerShadowVisible: false,
+            statusBarStyle: "dark",
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="(tabs)" options={{}} />
+          <Stack.Screen name="(drawers)" options={{}} />
+          <Stack.Screen name="auth" />
+          <Stack.Screen
+            name="modal"
+            options={{
+              // Set the presentation mode to modal for our modal route.
+              presentation: "modal",
+            }}
+          />
+        </Stack>
+      </PersistGate>
+    </Provider>
   );
 }

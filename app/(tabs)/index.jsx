@@ -10,31 +10,46 @@ import Customers from '../../components/home/Customers';
 
 import CustomerOrders from '../../components/home/CustomerOrders';
 import Tabs from '../../components/common/Tabs';
-import Animated, { SlideInDown } from 'react-native-reanimated';
-
-const tabs = [
+import Animated, { SlideInDown, SlideInRight } from "react-native-reanimated";
+import { useSelector } from "react-redux";
+const { width } = Dimensions.get("screen");
+const shopkeeperTabs = [
   {
-    id: 'customers',
-    name: 'কাস্টমার',
+    id: "customers",
+    name: "কাস্টমার",
     components: <Customers />,
     isActive: true,
   },
   {
-    id: 'orders',
-    name: 'অর্ডার',
+    id: "orders",
+    name: "অর্ডার",
+    components: <CustomerOrders />,
+    isActive: false,
+  },
+];
+const customersTabs = [
+  {
+    id: "shops",
+    name: "দোকান",
+    components: <Customers />,
+    isActive: true,
+  },
+  {
+    id: "orders",
+    name: "অর্ডার",
     components: <CustomerOrders />,
     isActive: false,
   },
 ];
 
 export default function TabHomeScreen() {
-  const router = useRouter();
-  const { width } = Dimensions.get('screen');
+  const { authUser } = useSelector(({ auth }) => auth);
 
+  const tabs = authUser?.role === "shopkeeper" ? shopkeeperTabs : customersTabs;
   return (
     <SafeAreaView style={styles.container}>
       <Animated.View
-        entering={SlideInDown}
+        entering={SlideInRight}
         style={styles.twoCardContainer(width)}
       >
         <Card width="49%">

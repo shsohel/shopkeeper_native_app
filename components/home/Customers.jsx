@@ -6,6 +6,12 @@ import { COLORS, FONT, SIZES } from "../../constants";
 import React, { useState } from "react";
 import CustomerCard from "./CustomerCard";
 import { useRouter } from "expo-router";
+import Animated, {
+  SlideInDown,
+  SlideInLeft,
+  SlideInRight,
+  SlideInUp,
+} from "react-native-reanimated";
 
 const data = [
   {
@@ -70,7 +76,11 @@ const Customers = () => {
   const [error, setError] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <Animated.View
+      style={styles.container}
+      entering={SlideInLeft}
+      exiting={SlideInRight}
+    >
       <View style={styles.cardsContainer}>
         {isLoading ? (
           <ActivityIndicator size="large" color={COLORS.primary} />
@@ -86,7 +96,7 @@ const Customers = () => {
           ))
         )}
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
